@@ -21,10 +21,10 @@ public class EcommerceResponse {
 
     private List<Product> products;
     private User user;
-    private List<Product> basket;
+    private Basket basket;
     private PaymentMethod  paymentMethod;
 
-    public EcommerceResponse(List<Product> products, User user, List<Product> basket, PaymentMethod paymentMethod) {
+    public EcommerceResponse(List<Product> products, User user, Basket basket, PaymentMethod paymentMethod) {
         this.products = products;
         this.user = user;
         this.basket = basket;
@@ -55,11 +55,11 @@ public class EcommerceResponse {
         this.user = user;
     }
 
-    public List<Product> getBasket() {
+    public Basket getBasket() {
         return basket;
     }
 
-    public void setBasket(List<Product> basket) {
+    public void setBasket(Basket basket) {
         this.basket = basket;
     }
 

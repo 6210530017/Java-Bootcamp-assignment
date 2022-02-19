@@ -44,10 +44,14 @@ public class EcommerceController {
 //        return new EcommerceResponse(ecommerceService.getProductById(productId));
     }
 
-//    @PostMapping("/product/{productId}")
-//    public EcommerceResponse addToBasket(@PathVariable String productId) {
-//
-//    }
+    @PostMapping("/product/{productId}")
+    public EcommerceResponse addToBasket(@PathVariable String productId) {
+        if (response.getBasket() == null) {
+            response.setBasket(new Basket());
+        }
+        response.setBasket(ecommerceService.addToBasket(productId,1, response.getBasket()));
+        return response;
+    }
 
 //    @GetMapping("/address/user={userName}")
 //    public EcommerceResponse address(@PathVariable String userName){

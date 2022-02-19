@@ -30,6 +30,13 @@ public class EcommerceService {
         return user;
     }
 
+    public Basket addToBasket(String productId, int quantity, Basket basket) {
+        int pId = Integer.parseInt(productId);
+        List<Product> product = productRepository.findByProductId(pId);
+        basket.addToBasket(product.get(0),quantity);
+        return basket;
+    }
+
 //    public String userAddress(String name) {
 //        Optional<User> user = userRepository.findByName(name);
 //        return name+"\'s address is "+user.get().getAddress();
