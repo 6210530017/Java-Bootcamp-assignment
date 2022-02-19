@@ -3,6 +3,7 @@ package com.example.Ecommerce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,17 +15,23 @@ public class EcommerceService {
     @Autowired
     private ProductRepository productRepository;
 
-//    public String concatData(String message) {
-//        return "Object "+message;
-//    }
-
-    public String userAddress(String name) {
-        Optional<User> user = userRepository.findByName(name);
-        return name+"\'s address is "+user.get().getAddress();
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
     }
 
-    public String searchProduct(String productCategoryName) {
-        Optional<Product> product = productRepository.findByCategory(productCategoryName);
-        return product.get().getProductName();  //ชั่วคราว
+    public List<Product> getProductById(String productId) {
+        int pId = Integer.parseInt(productId);
+        List<Product> product = productRepository.findByProductId(pId);
+        return product;
+    }
+
+//    public String userAddress(String name) {
+//        Optional<User> user = userRepository.findByName(name);
+//        return name+"\'s address is "+user.get().getAddress();
+//    }
+
+    public List<Product> searchProduct(String productCategoryName) {
+        List<Product> product = productRepository.findByCategory(productCategoryName);
+        return product;
     }
 }
