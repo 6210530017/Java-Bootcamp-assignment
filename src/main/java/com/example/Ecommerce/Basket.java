@@ -9,6 +9,10 @@ public class Basket {
     private int quantity = 0;
     private int price = 0;
 
+    public Basket() {
+        products = new ArrayList<Product>();
+    }
+
     public void addToBasket(Product product, int quantity) {
         if (products == null) {
             products = new ArrayList<Product>();

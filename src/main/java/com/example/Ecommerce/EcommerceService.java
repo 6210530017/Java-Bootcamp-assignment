@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EcommerceService {
@@ -37,13 +36,22 @@ public class EcommerceService {
         return basket;
     }
 
-//    public String userAddress(String name) {
-//        Optional<User> user = userRepository.findByName(name);
-//        return name+"\'s address is "+user.get().getAddress();
-//    }
-
     public List<Product> searchProduct(String productCategoryName) {
         List<Product> product = productRepository.findByCategory(productCategoryName);
         return product;
+    }
+
+    public PaymentMethod payment(String method, Card detail) {
+        return new PaymentMethod(method,detail);
+    }
+
+    public PaymentMethod payment(String method, EcommerceResponse response) {
+        Linepaydetail detail = new Linepaydetail();
+        detail.setOneTimeKey("123456789012");
+        detail.setAmount(100);
+        detail.setCurrency("THB");
+        detail.setProductName(response.getBasket().getProducts().get(0).toString());
+        detail.setOrderId("MyWEB123456789");
+        return new PaymentMethod(method, detail);
     }
 }

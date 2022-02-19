@@ -1,10 +1,9 @@
 package com.example.Ecommerce;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.YearMonth;
 
 @RestController
 public class EcommerceController {
@@ -71,10 +70,35 @@ public class EcommerceController {
         return response;
     }
 
-//    @GetMapping("/address/user={userName}")
-//    public EcommerceResponse address(@PathVariable String userName){
-//        return new EcommerceResponse(ecommerceService.userAddress(userName));
+    @GetMapping("/checkout")
+    public EcommerceResponse checkout() {
+        return response;  //อาจารย์สมมติว่าผู้ซื้อเป็นสมาชิกแล้ว มีข้อมูลอยู่แล้ว ซึ่งผมออกแบบให้ข้อมูลที่อยู่ อยู่ในข้อมูล user แล้ว จึงไม่จำเป็นต้องทำอะไร return response ได้เลย
+    }
+
+    @GetMapping("/payment")
+    public EcommerceResponse choose() {
+        return response; // แสดงหน้าให้เลือกว่าจะชำระเงินช่องทางไหน
+    }
+
+    // Confirm to order
+    @PostMapping("/payment/card/{cardNo}/{CVV}/{year}/{month}")
+    public EcommerceResponse chooseCardMethod(@PathVariable String cardNo, @PathVariable String CVV, @PathVariable String year, @PathVariable String month) {
+        int yearInt = Integer.parseInt(year);
+        int monthInt = Integer.parseInt(month);
+        Card card = new Card(response.getUser().getName(),cardNo, CVV, YearMonth.of(yearInt,monthInt));
+        response.setPaymentMethod(ecommerceService.payment("Credit/Debit Card", card));
+        return response;
+    }
+
+    // Confirm to order
+    @PostMapping("/payment/linepay")
+    public EcommerceResponse chooseLinePayMethod() {
+        response.setPaymentMethod(ecommerceService.payment("LINE Pay", response));
+        return response;
+    }
+
+//    @GetMapping("/summary")
+//    public EcommerceResponse summary() {
+//
 //    }
-
-
 }

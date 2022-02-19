@@ -22,13 +22,12 @@ public class EcommerceResponse {
 
     private List<Product> products;
     private User user;
-    private Basket basket;
+    private Basket basket = new Basket();;
     private PaymentMethod  paymentMethod;
 
     public EcommerceResponse() {
         products = new ArrayList<Product>();
         user = null;
-        basket = new Basket();
         paymentMethod = null;
     }
 
