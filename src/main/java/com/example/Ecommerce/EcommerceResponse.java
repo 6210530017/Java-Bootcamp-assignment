@@ -1,5 +1,6 @@
 package com.example.Ecommerce;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,13 @@ public class EcommerceResponse {
     private User user;
     private Basket basket;
     private PaymentMethod  paymentMethod;
+
+    public EcommerceResponse() {
+        products = new ArrayList<Product>();
+        user = null;
+        basket = new Basket();
+        paymentMethod = null;
+    }
 
     public EcommerceResponse(List<Product> products, User user, Basket basket, PaymentMethod paymentMethod) {
         this.products = products;

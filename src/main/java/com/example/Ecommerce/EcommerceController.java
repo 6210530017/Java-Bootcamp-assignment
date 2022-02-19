@@ -14,14 +14,25 @@ public class EcommerceController {
 
     private EcommerceResponse response;
 
+    private void makeSureResponseIsExist() {
+        if (response == null) {
+            response = new EcommerceResponse();
+        }
+    }
+
     @GetMapping("/login/{username}")
     public EcommerceResponse login(@PathVariable String username) {
-        response = new EcommerceResponse(ecommerceService.login(username));
+        if (response == null) {
+            response = new EcommerceResponse(ecommerceService.login(username));
+        } else {
+            response.setUser(ecommerceService.login(username));
+        }
         return response;
     }
 
     @GetMapping("/home")
     public EcommerceResponse loadHomePage() {
+        makeSureResponseIsExist();
         response.setProducts(ecommerceService.getAllProduct());
         return response;
 
@@ -30,6 +41,7 @@ public class EcommerceController {
 
     @GetMapping("/catalog/search={keyword}")
     public EcommerceResponse search(@PathVariable String keyword) {
+        makeSureResponseIsExist();
         response.setProducts(ecommerceService.searchProduct(keyword));
         return response;
 
@@ -38,6 +50,7 @@ public class EcommerceController {
 
     @GetMapping("/product/{productId}")
     public EcommerceResponse productDetail(@PathVariable String productId) {
+        makeSureResponseIsExist();
         response.setProducts(ecommerceService.getProductById(productId));
         return response;
 
@@ -46,10 +59,15 @@ public class EcommerceController {
 
     @PostMapping("/product/{productId}")
     public EcommerceResponse addToBasket(@PathVariable String productId) {
-        if (response.getBasket() == null) {
-            response.setBasket(new Basket());
-        }
+        makeSureResponseIsExist();
         response.setBasket(ecommerceService.addToBasket(productId,1, response.getBasket()));
+        return response;
+    }
+
+    @GetMapping("/myCart")
+    public EcommerceResponse getProductInBasket() {
+        makeSureResponseIsExist();
+        response.setProducts(null);  // สมมติว่าไม่มีการแนะนำสินค้าใดๆต่อ เลยทำการเคลียร์ทิ้ง ปกติ product คือสินค้าแนะนำหรือผลจากการ search ของ user
         return response;
     }
 
