@@ -9,27 +9,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EcommerceController {
 
-//    @GetMapping("/home")
-//    public EcommerceResponse home() {
-//        return new EcommerceResponse("Hello");
-//    }
-
     @Autowired
     private EcommerceService ecommerceService;
 
+    private EcommerceResponse response;
+
+    @GetMapping("/login/{username}")
+    public EcommerceResponse login(@PathVariable String username) {
+        response = new EcommerceResponse(ecommerceService.login(username));
+        return response;
+    }
+
     @GetMapping("/home")
     public EcommerceResponse loadHomePage() {
-        return new EcommerceResponse(ecommerceService.getAllProduct());
+        response.setProducts(ecommerceService.getAllProduct());
+        return response;
+
+//        return new EcommerceResponse(ecommerceService.getAllProduct());
     }
 
     @GetMapping("/catalog/search={keyword}")
     public EcommerceResponse search(@PathVariable String keyword) {
-        return new EcommerceResponse(ecommerceService.searchProduct(keyword));
+        response.setProducts(ecommerceService.searchProduct(keyword));
+        return response;
+
+//        return new EcommerceResponse(ecommerceService.searchProduct(keyword));
     }
 
     @GetMapping("/product/{productId}")
     public EcommerceResponse productDetail(@PathVariable String productId) {
-        return new EcommerceResponse(ecommerceService.getProductById(productId));
+        response.setProducts(ecommerceService.getProductById(productId));
+        return response;
+
+//        return new EcommerceResponse(ecommerceService.getProductById(productId));
     }
 
 //    @PostMapping("/product/{productId}")

@@ -25,6 +25,11 @@ public class EcommerceService {
         return product;
     }
 
+    public User login(String username) {
+        User user = userRepository.findByName(username);
+        return user;
+    }
+
 //    public String userAddress(String name) {
 //        Optional<User> user = userRepository.findByName(name);
 //        return name+"\'s address is "+user.get().getAddress();

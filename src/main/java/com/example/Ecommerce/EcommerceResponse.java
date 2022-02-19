@@ -35,6 +35,10 @@ public class EcommerceResponse {
         this.products = products;
     }
 
+    public EcommerceResponse(User user) {
+        this.user = user;
+    }
+
     public List<Product> getProducts() {
         return products;
     }
