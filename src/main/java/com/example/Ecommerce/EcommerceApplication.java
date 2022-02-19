@@ -25,12 +25,29 @@ public class EcommerceApplication {
 
 	@PostConstruct
 	public void addInitialProduct() {
+		Product airpodpro = new Product();
+		airpodpro.setProductId(0);
+		airpodpro.setProductName("AirPods Pro");
+		airpodpro.setCategory("หูฟัง");
+		airpodpro.setDetail("By Apple, Best quality.");
+		airpodpro.setPrice(9000);
+		productRepository.save(airpodpro);
+
 		Product airpod = new Product();
-		airpod.setProductName("AirPods Pro");
+		airpod.setProductId(1);
+		airpod.setProductName("AirPods");
 		airpod.setCategory("หูฟัง");
 		airpod.setDetail("By Apple, Good quality.");
-		airpod.setPrice(9000);
+		airpod.setPrice(6000);
 		productRepository.save(airpod);
+
+		Product airForce = new Product();
+		airForce.setProductId(2);
+		airForce.setProductName("Nike Air Force");
+		airForce.setCategory("รองเท้า");
+		airForce.setDetail("By NIKE, Best shoes.");
+		airForce.setPrice(4000);
+		productRepository.save(airForce);
 	}
 
 	public static void main(String[] args) {
