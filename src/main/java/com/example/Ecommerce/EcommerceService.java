@@ -22,7 +22,10 @@ public class EcommerceService {
     public List<Product> getProductById(String productId) {
         int pId = Integer.parseInt(productId);
         List<Product> product = productRepository.findByProductId(pId);
-        return product;
+        if (!product.isEmpty()) {
+            return product;
+        }
+        throw new ProductNotFoundException("Product No.: " + productId);
     }
 
     public User login(String username) {
@@ -36,13 +39,19 @@ public class EcommerceService {
     public Basket addToBasket(String productId, int quantity, Basket basket) {
         int pId = Integer.parseInt(productId);
         List<Product> product = productRepository.findByProductId(pId);
-        basket.addToBasket(product.get(0),quantity);
-        return basket;
+        if (!product.isEmpty()) {
+            basket.addToBasket(product.get(0), quantity);
+            return basket;
+        }
+        throw new ProductNotFoundException("Product No.: " + productId);
     }
 
     public List<Product> searchProduct(String productCategoryName) {
         List<Product> product = productRepository.findByCategory(productCategoryName);
-        return product;
+        if (!product.isEmpty()) {
+            return product;
+        }
+        throw new ProductNotFoundException(productCategoryName);
     }
 
     public PaymentMethod payment(String method, Card detail) {
