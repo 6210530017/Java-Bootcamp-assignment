@@ -10,12 +10,22 @@ public class EcommerceResponse {
     private Basket basket = new Basket();;
     private PaymentMethod  paymentMethod;
     private Purchased purchased;
+    private String message;
 
     public EcommerceResponse() {
         products = new ArrayList<Product>();
         user = null;
         paymentMethod = null;
         purchased = null;
+        message = null;
+    }
+
+    public EcommerceResponse(String message) {
+        products = new ArrayList<Product>();
+        user = null;
+        paymentMethod = null;
+        purchased = null;
+        this.message = message;
     }
 
     public EcommerceResponse(List<Product> products, User user, Basket basket, PaymentMethod paymentMethod) {
@@ -24,6 +34,7 @@ public class EcommerceResponse {
         this.basket = basket;
         this.paymentMethod = paymentMethod;
         this.purchased = null;
+        this.message = null;
     }
 
     public EcommerceResponse(List<Product> products) {
@@ -72,5 +83,13 @@ public class EcommerceResponse {
 
     public void setPurchased(Purchased purchased) {
         this.purchased = purchased;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

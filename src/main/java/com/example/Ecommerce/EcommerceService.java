@@ -27,7 +27,10 @@ public class EcommerceService {
 
     public User login(String username) {
         User user = userRepository.findByName(username);
-        return user;
+        if (user != null) {
+            return user;
+        }
+        throw new UserNotFoundException(username);
     }
 
     public Basket addToBasket(String productId, int quantity, Basket basket) {
