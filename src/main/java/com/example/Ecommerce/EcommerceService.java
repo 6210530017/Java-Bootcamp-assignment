@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class EcommerceService {
@@ -53,5 +54,12 @@ public class EcommerceService {
         detail.setProductName(response.getBasket().getProducts().get(0).toString());
         detail.setOrderId("MyWEB123456789");
         return new PaymentMethod(method, detail);
+    }
+
+    public Purchased purchase(EcommerceResponse response) {
+        Random rand = new Random();
+        String orderId = String.valueOf(rand.nextInt());
+        Purchased purchase = new Purchased(response.getBasket(), orderId, response.getUser());
+        return purchase;
     }
 }

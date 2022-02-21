@@ -2,33 +2,20 @@ package com.example.Ecommerce;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class EcommerceResponse {
-
-//    private String message;
-//
-//    public EcommerceResponse(String message) {
-//        this.message = message;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public void setMessage(String message) {
-//        this.message = message;
-//    }
 
     private List<Product> products;
     private User user;
     private Basket basket = new Basket();;
     private PaymentMethod  paymentMethod;
+    private Purchased purchased;
 
     public EcommerceResponse() {
         products = new ArrayList<Product>();
         user = null;
         paymentMethod = null;
+        purchased = null;
     }
 
     public EcommerceResponse(List<Product> products, User user, Basket basket, PaymentMethod paymentMethod) {
@@ -36,6 +23,7 @@ public class EcommerceResponse {
         this.user = user;
         this.basket = basket;
         this.paymentMethod = paymentMethod;
+        this.purchased = null;
     }
 
     public EcommerceResponse(List<Product> products) {
@@ -76,5 +64,13 @@ public class EcommerceResponse {
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public Purchased getPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(Purchased purchased) {
+        this.purchased = purchased;
     }
 }

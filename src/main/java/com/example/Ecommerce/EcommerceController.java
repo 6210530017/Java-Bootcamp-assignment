@@ -97,8 +97,10 @@ public class EcommerceController {
         return response;
     }
 
-//    @GetMapping("/summary")
-//    public EcommerceResponse summary() {
-//
-//    }
+    @GetMapping("/summary")
+    public EcommerceResponse purchase() {
+        response.setPurchased(ecommerceService.purchase(response));
+        response.setBasket(new Basket());
+        return response;
+    }
 }
