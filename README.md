@@ -1,5 +1,8 @@
-# Assignment Week1
-
+# Assignment1
+> นายปราโมทย์ ศิริภาพ    
+> Mr.Pramote Siriparp   
+>    
+> ถ้ามันยังไม่ดี ผมขอรับคำแนะนำในการปรับปรุงในครั้งหน้านะครับ ครั้งนี้เป็นการทำครั้งแรกของผมและประกอบกับติดโปรเจคที่ต้องส่งงานอาจารย์ที่มหาวิทยาลัย เลยอาจจะทำได้ไม่ดีเท่าไหร่
 ### Workflow จากมุมมองของผู้ใช้
 
 * **ขั้นตอนที่ 1**    
@@ -26,14 +29,14 @@
 ### RESTful API 
 | Method | Url | คำอธิบาย | Sample Valid Request Body | Sample Valid Response Body |   
 | :---------: | :---: | :---------: | :---: | :---: |
+|GET|/login|user ทำการล็อกอินเข้าสู่ระบบ|JSON|JSON|
 | GET | /home | หน้าหลัก แสดงสินค้าทั้งหมด | JSON | JSON |
-| POST | /home | ผู้ใช้พิมพ์ค้นหาหูฟัง |  JSON | JSON |
 | GET | /catalog/search=หูฟัง | แสดงหูฟังรุ่นต่าง ๆ ที่มีในระบบ | JSON | JSON |
 | GET | /product/:productID | แสดงหูฟังรุ่นที่เลือก | JSON | JSON |
-| POST | /product/productID | เพิ่มหูฟังลงในตะกร้า | JSON | JSON |
-| GET | /cart | แสดงสินค้าที่อยู่ในตะกร้าสินค้า | JSON | JSON |
-| PUT | /cart | ชำระค่าสินค้า | JSON | JSON |
+| POST | /addproduct/productID | เพิ่มหูฟังลงในตะกร้า | JSON | JSON |
+| GET | /myCart | แสดงสินค้าที่อยู่ในตะกร้าสินค้า | JSON | JSON |
+| PUT | /checkout | ชำระค่าสินค้า | JSON | JSON |
 | POST | /checkout | ใส่รายละเอียดที่อยู่ในการจัดส่งสินค้า | JSON | JSON |
-| GET | /checkout/payment| เลือกช่องทางการชำระเงิน | JSON | JSON |
-| POST | /checkout | กดสั่งซื้อสินค้า | JSON | JSON |
-| GET | /success | สรุปการสั่งซื้อ | JSON | JSON |
+| GET | /payment| เลือกช่องทางการชำระเงิน | JSON | JSON |
+| POST | /payment | กดสั่งซื้อสินค้า | JSON | JSON |
+| GET | /summary | สรุปการสั่งซื้อ | JSON | JSON |
