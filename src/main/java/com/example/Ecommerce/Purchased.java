@@ -36,4 +36,13 @@ public class Purchased {
     public void setBuyer(User buyer) {
         this.buyer = buyer;
     }
+
+    @Override
+    public String toString() {
+        return "Purchased{" +
+                "products=" + products +
+                ", orderId='" + orderId + '\'' +
+                ", buyer=" + buyer +
+                '}';
+    }
 }

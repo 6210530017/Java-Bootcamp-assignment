@@ -49,4 +49,15 @@ public class Linepaydetail{
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
+	@Override
+	public String toString() {
+		return "Linepaydetail{" +
+				"oneTimeKey='" + oneTimeKey + '\'' +
+				", amount=" + amount +
+				", orderId='" + orderId + '\'' +
+				", currency='" + currency + '\'' +
+				", productName='" + productName + '\'' +
+				'}';
+	}
 }

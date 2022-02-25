@@ -33,6 +33,14 @@ public class PaymentMethod {
     public void setDetail(Object detail) {
         this.detail = detail;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentMethod{" +
+                "method='" + method + '\'' +
+                ", detail=" + detail +
+                '}';
+    }
 }
 
 

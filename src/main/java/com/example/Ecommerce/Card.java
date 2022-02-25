@@ -51,4 +51,14 @@ public class Card {
     public void setExpDate(int month, int year) {
         this.expDate = YearMonth.of(year,month);
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardHolderName='" + cardHolderName + '\'' +
+                ", cardNo='" + cardNo + '\'' +
+                ", CVV='" + CVV + '\'' +
+                ", expDate=" + expDate +
+                '}';
+    }
 }

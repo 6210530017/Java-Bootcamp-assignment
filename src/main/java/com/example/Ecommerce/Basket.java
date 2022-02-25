@@ -13,6 +13,13 @@ public class Basket {
         products = new ArrayList<Product>();
     }
 
+    public Basket(Product product) {
+        products = new ArrayList<Product>();
+        products.add(product);
+        quantity++;
+        setPrice(product.getPrice());
+    }
+
     public void addToBasket(Product product, int quantity) {
         if (products == null) {
             products = new ArrayList<Product>();
@@ -43,5 +50,14 @@ public class Basket {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Basket{" +
+                "products=" + products +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }
