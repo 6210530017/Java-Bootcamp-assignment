@@ -56,7 +56,7 @@ public class EcommerceController {
 //        return new EcommerceResponse(ecommerceService.getProductById(productId));
     }
 
-    @PostMapping("/product/{productId}")
+    @GetMapping("/addProduct/{productId}")
     public EcommerceResponse addToBasket(@PathVariable String productId) {
         makeSureResponseIsExist();
         response.setBasket(ecommerceService.addToBasket(productId,1, response.getBasket()));
@@ -81,7 +81,7 @@ public class EcommerceController {
     }
 
     // Confirm to order
-    @PostMapping("/payment/card/{cardNo}/{CVV}/{year}/{month}")
+    @GetMapping("/payment/card/{cardNo}/{CVV}/{year}/{month}")
     public EcommerceResponse chooseCardMethod(@PathVariable String cardNo, @PathVariable String CVV, @PathVariable String year, @PathVariable String month) {
         int yearInt = Integer.parseInt(year);
         int monthInt = Integer.parseInt(month);
@@ -91,7 +91,7 @@ public class EcommerceController {
     }
 
     // Confirm to order
-    @PostMapping("/payment/linepay")
+    @GetMapping("/payment/linepay")
     public EcommerceResponse chooseLinePayMethod() {
         response.setPaymentMethod(ecommerceService.payment("LINE Pay", response));
         return response;

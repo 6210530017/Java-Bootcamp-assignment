@@ -15,6 +15,14 @@ public class EcommerceService {
     @Autowired
     private ProductRepository productRepository;
 
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
